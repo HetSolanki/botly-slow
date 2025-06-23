@@ -7,7 +7,7 @@ import path from "node:path";
 /**
  * @param {vscode.ExtensionContext} context
  */
-export function activate(context) { 
+export function activate(context) {
   console.log('Congratulations, your extension "balty" is now active!');
 
   const disposable = vscode.commands.registerCommand(
@@ -35,19 +35,38 @@ export function activate(context) {
       "Scripts",
       "python"
     );
+
     const scriptPath = path.join(extensionPath, "botly-(agent)", "main.py");
 
     const agent = spawn(pythonPath, [scriptPath]);
 
     panel.webview.onDidReceiveMessage((msg) => {
-      activateBotly(agent, msg.text)
-        .then((response) => {
-          console.log(response);
-          panel.webview.postMessage({ type: "model", text: response });
-        })  
-        .catch((err) => {
-          console.log(err);
-        });
+      if (msg.type == "user") {
+        activateBotly(agent, msg.text)
+          .then((response) => {
+            try {
+              response = JSON.parse(response);
+              if (response.type === "model_response") {
+                panel.webview.postMessage(response || "No Content");
+              } else {
+                console.log(response);
+              }
+            } catch (e) {
+              console.log(e);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else if (msg.type == "write-file-response") {
+        agent.stdin.write(
+          JSON.stringify({
+            type: "write-file-response",
+            function_name: msg.function_name,
+            content: msg.content,
+          }) + "\n"
+        );
+      }
     });
   });
 
