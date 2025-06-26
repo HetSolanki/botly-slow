@@ -3,6 +3,7 @@ import * as vscode from "vscode";
 import { getContentHtml } from "./utils/getContentHtml.js";
 import { spawn } from "node:child_process";
 import path from "node:path";
+import { getWebviewContent } from "./utils/getWebviewContent.js";
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -25,7 +26,8 @@ export function activate(context) {
       }
     );
 
-    panel.webview.html = getContentHtml();
+    panel.webview.html = getWebviewContent(panel.webview, context.extensionUri);
+
     const extensionPath =
       vscode.extensions.getExtension("hets.botly")?.extensionPath;
     const pythonPath = path.join(

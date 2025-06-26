@@ -27,22 +27,27 @@ export default function activateBotly(agent, question) {
           data.type == "function_call" &&
           data.function_name == "get_file_content"
         ) {
-          const file_content = function_mapping.get_file_content(
-            data.function_args.file_path
-          );
-          agent.stdin.write(
-            JSON.stringify({
-              type: "file_content",
-              content: file_content,
-              function_name: data.function_name,
-            }) + "\n"
-          );
+          function_mapping
+            .get_file_content(data.function_args.file_path)
+            .then((file_content) => {
+              agent.stdin.write(
+                JSON.stringify({
+                  type: "file_content",
+                  content: file_content,
+                  function_name: data.function_name,
+                }) + "\n"
+              );
+            });
         } else if (
           data.type == "function_call" &&
           data.function_name == "write_file"
         ) {
+          console.log("File-Path", data.function_args.file_path);
           function_mapping
-            .write_file(data.function_args.content)
+            .write_file(
+              data.function_args.content,
+              data.function_args.file_path
+            )
             .then((write_file_response) => {
               console.log(write_file_response);
               agent.stdin.write(

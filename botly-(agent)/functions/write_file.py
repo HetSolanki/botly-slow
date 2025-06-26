@@ -2,7 +2,7 @@ from google.genai import types
 
 schema_write_file = types.FunctionDeclaration(
     name="write_file",
-    description="Modifies and write to the currently selected file or the path being provided by the user",
+    description="Modifies or Update the file based on the relative path being provided by the user and with the content provided by the user",
     parameters=types.Schema(
         type=types.Type.OBJECT,
         properties={
