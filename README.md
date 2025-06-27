@@ -1,7 +1,3 @@
-Sure! Here's the full response formatted as Markdown:
-
----
-
 # Bitwise – AI Assistant for Developers
 
 **Bitwise** is an intelligent coding companion built as a Visual Studio Code extension. It integrates a conversational AI agent directly into your editor to assist with code generation, explanation, editing, and navigation — making development faster and smarter.
