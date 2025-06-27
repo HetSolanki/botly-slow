@@ -49,7 +49,7 @@ export function Chat() {
               )}
             >
               <b className="font-semibold">
-                {msg.type === "user" ? "" : "Botly-Agent"}
+                {msg.type === "user" ? "" : "Bitwise-Agent"}
               </b>{" "}
               <Markdown>{msg.content}</Markdown>
             </p>
@@ -65,7 +65,7 @@ export function Chat() {
         <div className="flex w-full justify-between items-center gap-4 p-4 rounded-none">
           <Input
             type="text"
-            placeholder="Edit files in your workspace with botly"
+            placeholder="Edit files in your workspace with bitwise"
             className="w-full border-white text-white"
             onChange={(e) => setPrompt(e.target.value)}
           />

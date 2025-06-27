@@ -1,6 +1,6 @@
 {
-  "name": "botly",
-  "displayName": "botly",
+  "name": "bitwise",
+  "displayName": "bitwise",
   "publisher": "hets",
   "description": "may probably assist you to fix the bug :)",
   "version": "0.0.1",
@@ -16,12 +16,12 @@
   "contributes": {
     "commands": [
       {
-        "command": "botly.ask",
-        "title": "Ask Botly"
+        "command": "bitwise.ask",
+        "title": "Ask Bitwise"
       },
       {
-        "command": "botly.openChat",
-        "title": "Chat with botly"
+        "command": "bitwise.openChat",
+        "title": "Chat with Bitwise"
       }
     ]
   },

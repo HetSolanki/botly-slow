@@ -1,6 +1,5 @@
 import activateBotly from "./utils/activateBolty.js";
 import * as vscode from "vscode";
-import { getContentHtml } from "./utils/getContentHtml.js";
 import { spawn } from "node:child_process";
 import path from "node:path";
 import { getWebviewContent } from "./utils/getWebviewContent.js";
@@ -9,16 +8,16 @@ import { getWebviewContent } from "./utils/getWebviewContent.js";
  * @param {vscode.ExtensionContext} context
  */
 export function activate(context) {
-  console.log('Congratulations, your extension "balty" is now active!');
+  console.log('Congratulations, your extension "bitwise" is now active!');
 
   const disposable = vscode.commands.registerCommand(
-    "botly.ask",
+    "bitwise.ask",
     activateBotly
   );
 
-  const webView = vscode.commands.registerCommand("botly.openChat", () => {
+  const webView = vscode.commands.registerCommand("bitwise.openChat", () => {
     const panel = vscode.window.createWebviewPanel(
-      "botly",
+      "bitwise",
       "maybe helpful",
       vscode.ViewColumn.Beside,
       {
@@ -29,16 +28,16 @@ export function activate(context) {
     panel.webview.html = getWebviewContent(panel.webview, context.extensionUri);
 
     const extensionPath =
-      vscode.extensions.getExtension("hets.botly")?.extensionPath;
+      vscode.extensions.getExtension("hets.bitwise")?.extensionPath;
     const pythonPath = path.join(
       extensionPath,
-      "botly-(agent)",
+      "bitwise",
       "venv",
       "Scripts",
       "python"
     );
 
-    const scriptPath = path.join(extensionPath, "botly-(agent)", "main.py");
+    const scriptPath = path.join(extensionPath, "bitwise", "main.py");
 
     const agent = spawn(pythonPath, [scriptPath]);
 
