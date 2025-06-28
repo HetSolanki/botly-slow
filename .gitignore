@@ -2,4 +2,6 @@ node_modules
 .vscode-test/
 *.vsix
 .env
-
+dist/
+build/
+__pycache__

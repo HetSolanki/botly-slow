@@ -8,8 +8,14 @@ from config import MAX_ITERS
 import json
 
 def main():
-    load_dotenv()
+
+    base_path = os.path.dirname(os.path.abspath(__file__))
+    print(base_path)
+    dotenv_path = os.path.join(base_path, ".env")
+
+    load_dotenv(dotenv_path)
     api_key = os.environ.get("GEMINI_API_KEY")
+    print(api_key)
     client = genai.Client(api_key=api_key)
 
     messages = []
