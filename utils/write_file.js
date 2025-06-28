@@ -60,6 +60,12 @@ export async function write_file(content, file_path = "") {
       }
     } catch (err) {
       vscode.window.showErrorMessage(`Failed to open or modify file: ${err}`);
+      return JSON.stringify({
+        type: "write-file-response",
+        function_name: "write_file",
+        content: `Write Operation Not Done Succesfully due to ${err}`,
+        status: "Not done",
+      });
     }
   }
 }

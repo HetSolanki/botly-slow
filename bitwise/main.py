@@ -8,16 +8,11 @@ from config import MAX_ITERS
 import json
 
 def main():
-
     base_path = os.path.dirname(os.path.abspath(__file__))
-    print(base_path)
     dotenv_path = os.path.join(base_path, ".env")
-
     load_dotenv(dotenv_path)
     api_key = os.environ.get("GEMINI_API_KEY")
-    print(api_key)
     client = genai.Client(api_key=api_key)
-
     messages = []
     iters = 0
 
@@ -29,7 +24,8 @@ def main():
         if data["type"] == "question":
             user_prompt = data["question"]
             messages.append(types.Content(role="user", parts=[types.Part(text=user_prompt)]))
-
+            iters = 0
+    
         while True:
             iters += 1
             if iters > MAX_ITERS:

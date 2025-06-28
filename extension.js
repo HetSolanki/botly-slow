@@ -24,37 +24,31 @@ export function activate(context) {
         enableScripts: true,
       }
     );
-
     panel.webview.html = getWebviewContent(panel.webview, context.extensionUri);
-
     const extensionPath =
       vscode.extensions.getExtension("hetsolanki.bitwise")?.extensionPath;
-    // const pythonPath = path.join(
-    //   extensionPath,
-    //   "bitwise",
-    //   "venv",
-    //   "Scripts",
-    //   "python"
-    // );
 
-    // const scriptPath = path.join(extensionPath, "bitwise", "main.py");
+    // Production
+    // const binaryPath = path.join(extensionPath, "dist", "main", "main.exe");
+    // const agent = spawn(binaryPath, []);
 
-    const binaryPath = path.join(extensionPath, "dist", "main", "main.exe");
+    // Development
+    const pythonPath = path.join(
+      extensionPath,
+      "bitwise",
+      "venv",
+      "Scripts",
+      "python"
+    );
+    const scriptPath = path.join(extensionPath, "bitwise", "main.py");
+    const agent = spawn(pythonPath, [scriptPath]);
 
-    console.log(binaryPath);
-
-    // const agent = spawn(pythonPath, [scriptPath]);
-
-    const agent = spawn(binaryPath, []);
-    // console.log(agent);
     panel.webview.onDidReceiveMessage((msg) => {
-      console.log("Message", msg);
       if (msg.type == "user") {
         activateBotly(agent, msg.text)
           .then((response) => {
             try {
               response = JSON.parse(response);
-              console.log(response);
               if (response.type === "model_response") {
                 panel.webview.postMessage(response || "No Content");
               } else {

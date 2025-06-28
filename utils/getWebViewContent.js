@@ -25,7 +25,7 @@ export function getWebviewContent(webview, extensionUri) {
         <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource} 'unsafe-inline'; script-src 'nonce-${nonce}';">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="${styleUri}">
-        <title>Botly</title>
+        <title>Bitwise</title>
       </head>
       <body>
         <div id="root"></div>

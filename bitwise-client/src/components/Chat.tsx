@@ -5,6 +5,7 @@ import { Send } from "lucide-react";
 import { vscode } from "@/vscode";
 import { useEffect, useState } from "react";
 import Markdown from "react-markdown";
+import CodeBlock from "./codeblock";
 
 export function Chat() {
   const [prompt, setPrompt] = useState("");
@@ -37,31 +38,35 @@ export function Chat() {
   }, []);
 
   return (
-    <div className="h-screen flex flex-col">
+    <div className="h-screen flex flex-col text-white">
       {/* Chat Part */}
       <div className="flex-1 overflow-y-auto px-4 py-2">
-        {messages.map((msg: any, i: any) => (
-          <div key={i} className="my-3">
-            <p
-              className={cn(
-                msg.type === "user" ? "text-right" : "text-left",
-                "text-base"
-              )}
-            >
-              <b className="font-semibold">
-                {msg.type === "user" ? "" : "Bitwise-Agent"}
-              </b>{" "}
-              <Markdown>{msg.content}</Markdown>
-            </p>
-          </div>
-        ))}
+        {messages.map((msg: any, i: any) =>
+          /```[\s\S]*?```/.test(msg.content) ? (
+            <CodeBlock code={msg.content} />
+          ) : (
+            <div key={i} className="my-3">
+              <p
+                className={cn(
+                  msg.type === "user" ? "text-right" : "text-left",
+                  "text-base"
+                )}
+              >
+                <b className="font-semibold">
+                  {msg.type === "user" ? "" : "Bitwise-Agent"}
+                </b>{" "}
+                <Markdown>{msg.content}</Markdown>
+              </p>
+            </div>
+          )
+        )}
         {loading && (
           <div className="animate-spin inline-block size-5 border-2 border-current border-t-transparent text-white rounded-full"></div>
         )}
       </div>
 
       {/* Input part */}
-      <div className="p-1.5 bg-stone-800 flex items-center gap-2">
+      <div className="p-1.5 flex items-center gap-2">
         <div className="flex w-full justify-between items-center gap-4 p-4 rounded-none">
           <Input
             type="text"
@@ -75,7 +80,7 @@ export function Chat() {
             onClick={() => handleClick()}
             className="border-black font-semibold"
           >
-            <Send />
+            <Send color="black" />
           </Button>
         </div>
       </div>
