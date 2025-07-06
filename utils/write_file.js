@@ -1,5 +1,7 @@
 import * as vscode from "vscode";
 import * as path from "path";
+import * as fs from "fs";
+import { create_file } from "./create_file.js";
 
 export async function write_file(content, file_path = "") {
   console.log(file_path);
@@ -25,9 +27,12 @@ export async function write_file(content, file_path = "") {
       const workspace = vscode.workspace.workspaceFolders;
       const workspaceRoot = workspace[0].uri.fsPath;
       const filePath = path.join(workspaceRoot, file_path);
+
+      if (!fs.existsSync(filePath)) {
+        create_file(filePath, "");
+      }
       const fileUri = vscode.Uri.file(filePath);
 
-      console.log(filePath);
       // Open the file as a text document
       const document = await vscode.workspace.openTextDocument(filePath);
 

@@ -3,7 +3,7 @@
   "displayName": "bitwise",
   "publisher": "hetsolanki",
   "description": "may probably assist you to fix the bug :)",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "license": "MIT",
   "icon": "icon.png",
   "repository": {
@@ -18,7 +18,7 @@
   ],
   "type": "module",
   "activationEvents": [],
-  "main": "./extension.js",
+  "main": "dist/extension.js",
   "contributes": {
     "commands": [
       {
