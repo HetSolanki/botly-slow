@@ -11,7 +11,7 @@ import json
 def main():
     base_path = os.path.dirname(os.path.abspath(__file__))
     dotenv_path = os.path.join(base_path, ".env")
-    api_key = requests.get("https://botly-env-server.vercel.app/env").json()
+    api_key = requests.get("https://botly-env-server.vercel.app/env").json().get('api-key')
     load_dotenv(dotenv_path)
     client = genai.Client(api_key=api_key)
     messages = []
