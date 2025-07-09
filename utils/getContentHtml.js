@@ -34,7 +34,6 @@ export function getContentHtml() {
 
         window.addEventListener('message', event => {
           const msg = event.data;
-          console.log("My Message:", msg);
           const chat = document.getElementById('chat');
           chat.innerHTML += '<p><b>Agent:</b> ' +  marked.parse(msg.content) + '</p>';
         });

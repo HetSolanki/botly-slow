@@ -5,17 +5,17 @@ import * as path from "path";
 export async function create_file(relativePath, content) {
   const workspaceFolders = vscode.workspace.workspaceFolders;
 
-  console.log("Workspace", workspaceFolders);
+  // console.log("Workspace", workspaceFolders);
   if (!workspaceFolders) {
     vscode.window.showErrorMessage("No workspace folder is open.");
     return;
   }
 
   const workspaceRoot = workspaceFolders[0].uri.fsPath;
-  console.log("root", workspaceRoot);
+  // console.log("root", workspaceRoot);
 
   const filePath = path.join(workspaceRoot, relativePath);
-  console.log("filePath", filePath);
+  // console.log("filePath", filePath);
 
   // Ensure the directory exists
   fs.mkdirSync(path.dirname(filePath), { recursive: true });

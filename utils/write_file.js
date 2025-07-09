@@ -4,7 +4,7 @@ import * as fs from "fs";
 import { create_file } from "./create_file.js";
 
 export async function write_file(content, file_path = "") {
-  console.log(file_path);
+  // console.log(file_path);
   const editor = vscode.window.activeTextEditor;
   if (editor) {
     const fullRange = new vscode.Range(

@@ -42,7 +42,7 @@ export default function activateBotly(agent, question) {
           data.type == "function_call" &&
           data.function_name == "write_file"
         ) {
-          console.log("File-Path", data.function_args.file_path);
+          // console.log("File-Path", data.function_args.file_path);
           function_mapping
             .write_file(
               data.function_args.content,
@@ -62,7 +62,7 @@ export default function activateBotly(agent, question) {
           data.type == "function_call" &&
           data.function_name == "create_file"
         ) {
-          console.log(data);
+          // console.log(data);
           function_mapping.create_file(
             data.function_args.file_path,
             data.function_args.content

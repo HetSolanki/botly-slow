@@ -8,7 +8,7 @@ export async function get_file_content(file_path) {
 
   const filePath = path.join(workspaceRoot, file_path);
 
-  console.log(filePath);
+  // console.log(filePath);
   // Open the file as a text document
   const document = await vscode.workspace.openTextDocument(filePath);
 

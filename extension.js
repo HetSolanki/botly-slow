@@ -52,7 +52,7 @@ export function activate(context) {
               if (response.type === "model_response") {
                 panel.webview.postMessage(response || "No Content");
               } else {
-                console.log(response);
+                // console.log(response);
               }
             } catch (e) {
               console.log(e);

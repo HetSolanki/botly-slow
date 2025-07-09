@@ -7,7 +7,7 @@ export function get_current_file_path() {
     const path = filePath
       .filter((file) => file.split(".").length == 1)
       .join("\\");
-    console.log("Path-", path);
+    // console.log("Path-", path);
     return JSON.stringify({
       type: "file-path",
       function_name: "get_current_file_path",
