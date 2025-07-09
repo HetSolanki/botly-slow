@@ -29,19 +29,19 @@ export function activate(context) {
       vscode.extensions.getExtension("hetsolanki.bitwise")?.extensionPath;
 
     // Production
-    // const binaryPath = path.join(extensionPath, "dist", "main", "main.exe");
-    // const agent = spawn(binaryPath, []);
+    const binaryPath = path.join(extensionPath, "dist", "main", "main.exe");
+    const agent = spawn(binaryPath, []);
 
     // Development
-    const pythonPath = path.join(
-      extensionPath,
-      "bitwise",
-      "venv",
-      "Scripts",
-      "python"
-    );
-    const scriptPath = path.join(extensionPath, "bitwise", "main.py");
-    const agent = spawn(pythonPath, [scriptPath]);
+    // const pythonPath = path.join(
+    //   extensionPath,
+    //   "bitwise",
+    //   "venv",
+    //   "Scripts",
+    //   "python"
+    // );
+    // const scriptPath = path.join(extensionPath, "bitwise", "main.py");
+    // const agent = spawn(pythonPath, [scriptPath]);
 
     panel.webview.onDidReceiveMessage((msg) => {
       if (msg.type == "user") {

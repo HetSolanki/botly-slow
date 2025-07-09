@@ -5,17 +5,18 @@ from google import genai
 from call_function import available_functions, function_call
 from prompt import system_prompt
 from config import MAX_ITERS
+import requests
 import json
 
 def main():
     base_path = os.path.dirname(os.path.abspath(__file__))
     dotenv_path = os.path.join(base_path, ".env")
+    api_key = requests.get("https://botly-env-server.vercel.app/env").json()
     load_dotenv(dotenv_path)
-    api_key = os.environ.get("GEMINI_API_KEY")
     client = genai.Client(api_key=api_key)
     messages = []
     iters = 0
-
+    
     messages.append(types.Content(role="user", parts=[types.Part(text="Default user input, ignore it.!")]))
     for line in sys.stdin:
         data = json.loads(line)

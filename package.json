@@ -2,8 +2,8 @@
   "name": "bitwise",
   "displayName": "bitwise",
   "publisher": "hetsolanki",
-  "description": "may probably assist you to fix the bug :)",
-  "version": "0.1.1",
+  "description": "May probably assist you to fix the bug :)",
+  "version": "0.1.2",
   "license": "MIT",
   "icon": "icon.png",
   "repository": {
@@ -22,12 +22,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "bitwise.ask",
-        "title": "Ask Bitwise"
-      },
-      {
         "command": "bitwise.openChat",
-        "title": "Chat with Bitwise"
+        "title": "Chat: Bitwise"
       }
     ]
   },

@@ -5,7 +5,7 @@ a = Analysis(
     ['bitwise\\main.py'],
     pathex=[],
     binaries=[],
-    datas=[('bitwise/.env', '.')],
+    datas=[],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
